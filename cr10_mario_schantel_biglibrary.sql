@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Erstellungszeit: 27. Jun 2018 um 17:14
+-- Erstellungszeit: 28. Jun 2018 um 11:52
 -- Server-Version: 5.6.38
 -- PHP-Version: 7.2.1
 
@@ -60,24 +60,25 @@ INSERT INTO `address` (`addressId`, `street`, `houseNumber`, `zip`, `city`, `cou
 CREATE TABLE `author` (
   `authorId` int(11) NOT NULL,
   `authorName` varchar(30) NOT NULL,
-  `authorSurname` varchar(30) NOT NULL
+  `authorSurname` varchar(30) NOT NULL,
+  `fk_address_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `author`
 --
 
-INSERT INTO `author` (`authorId`, `authorName`, `authorSurname`) VALUES
-(1, 'Cody', 'Smith'),
-(2, 'High Crossing', '91'),
-(3, 'Bunker Hill', '58541'),
-(4, 'Bay', '915'),
-(5, 'Annamark', '9351'),
-(6, 'Hoffman', '5400'),
-(7, 'Logan', '97'),
-(8, 'Jay', '3'),
-(9, 'Butterfield', '1'),
-(10, 'Kinsman', '190');
+INSERT INTO `author` (`authorId`, `authorName`, `authorSurname`, `fk_address_id`) VALUES
+(1, 'Cody', 'Smith', 1),
+(2, 'High Crossing', '91', 2),
+(3, 'Bunker Hill', '58541', 3),
+(4, 'Bay', '915', 4),
+(5, 'Annamark', '9351', 5),
+(6, 'Hoffman', '5400', 6),
+(7, 'Logan', '97', 7),
+(8, 'Jay', '3', 8),
+(9, 'Butterfield', '1', 9),
+(10, 'Kinsman', '190', 10);
 
 -- --------------------------------------------------------
 
@@ -104,16 +105,16 @@ CREATE TABLE `media` (
 --
 
 INSERT INTO `media` (`mediaId`, `title`, `image`, `ISBN`, `short_description`, `publish_date`, `type`, `status`, `genres`, `fk_authorId`, `fk_publisherId`) VALUES
-(2, 'Good Luck Chuck', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 515833052, 0, 1, 'book', 'available', 'crime', 0, 0),
-(3, 'Guter Junge', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 553257135, 0, 24, 'book', 'available', 'crime', 0, 0),
-(4, 'Devil to Pay!, The', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 802695302, 0, 16, 'book', 'available', 'crime', 0, 0),
-(5, 'Horse\'s Mouth, The', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 564014511, 0, 18, 'book', 'available', 'crime', 0, 0),
-(6, 'Zardoz', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 32786204, 0, 19, 'book', 'available', 'crime', 0, 0),
-(7, 'Horseman on the Roof, The (Hus', 'http://dummyimage.com/500x500.png/cc0000/ffffff', 841764360, 0, 23, 'book', 'available', 'crime', 0, 0),
-(8, 'Coup de torchon (Clean Slate)', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 907186942, 0, 28, 'book', 'available', 'crime', 0, 0),
-(9, 'Hamlet', 'http://dummyimage.com/500x500.png/cc0000/ffffff', 923850881, 0, 31, 'book', 'available', 'crime', 0, 0),
-(10, 'Samson and Delilah', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 308237006, 0, 6, 'book', 'available', 'crime', 0, 0),
-(11, 'Tarnation', 'http://dummyimage.com/500x500.png/dddddd/000000', 726326137, 0, 1, 'book', 'available', 'crime', 0, 0);
+(2, 'Good Luck Chuck', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 515833052, 0, 1, 'book', 'available', 'crime', 1, 1),
+(3, 'Guter Junge', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 553257135, 0, 24, 'book', 'available', 'crime', 2, 2),
+(4, 'Devil to Pay!, The', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 802695302, 0, 16, 'book', 'available', 'crime', 3, 3),
+(5, 'Horse\'s Mouth, The', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 564014511, 0, 18, 'book', 'available', 'crime', 4, 4),
+(6, 'Zardoz', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 32786204, 0, 19, 'book', 'available', 'crime', 5, 5),
+(7, 'Horseman on the Roof, The (Hus', 'http://dummyimage.com/500x500.png/cc0000/ffffff', 841764360, 0, 23, 'book', 'available', 'crime', 6, 6),
+(8, 'Coup de torchon (Clean Slate)', 'http://dummyimage.com/500x500.png/5fa2dd/ffffff', 907186942, 0, 28, 'book', 'available', 'crime', 7, 7),
+(9, 'Hamlet', 'http://dummyimage.com/500x500.png/cc0000/ffffff', 923850881, 0, 31, 'book', 'available', 'crime', 8, 8),
+(10, 'Samson and Delilah', 'http://dummyimage.com/500x500.png/ff4444/ffffff', 308237006, 0, 6, 'book', 'available', 'crime', 9, 9),
+(11, 'Tarnation', 'http://dummyimage.com/500x500.png/dddddd/000000', 726326137, 0, 1, 'book', 'available', 'crime', 10, 10);
 
 -- --------------------------------------------------------
 
@@ -133,16 +134,16 @@ CREATE TABLE `publisher` (
 --
 
 INSERT INTO `publisher` (`publisherId`, `publisherName`, `publisherSize`, `fk_addressId`) VALUES
-(1, 'Bird, magnificent frigate', '', 0),
-(2, 'White-throated robin', '', 0),
-(3, 'Malachite kingfisher', '', 0),
-(4, 'Skimmer, four-spotted', '', 0),
-(5, 'Nyala', '', 0),
-(6, 'Fox, pampa gray', '', 0),
-(7, 'Pied butcher bird', '', 0),
-(8, 'Otter, giant', '', 0),
-(9, 'Badger, european', '', 0),
-(10, 'Sandgrouse, yellow-throated', '', 0);
+(1, 'Bird, magnificent frigate', '', 1),
+(2, 'White-throated robin', '', 9),
+(3, 'Malachite kingfisher', '', 8),
+(4, 'Skimmer, four-spotted', '', 7),
+(5, 'Nyala', '', 6),
+(6, 'Fox, pampa gray', '', 5),
+(7, 'Pied butcher bird', '', 4),
+(8, 'Otter, giant', '', 3),
+(9, 'Badger, european', '', 2),
+(10, 'Sandgrouse, yellow-throated', '', 10);
 
 -- --------------------------------------------------------
 
@@ -178,20 +179,25 @@ ALTER TABLE `address`
 -- Indizes für die Tabelle `author`
 --
 ALTER TABLE `author`
-  ADD PRIMARY KEY (`authorId`);
+  ADD PRIMARY KEY (`authorId`),
+  ADD KEY `fk_address_id` (`fk_address_id`),
+  ADD KEY `fk_address_id_2` (`fk_address_id`);
 
 --
 -- Indizes für die Tabelle `media`
 --
 ALTER TABLE `media`
-  ADD PRIMARY KEY (`mediaId`);
+  ADD PRIMARY KEY (`mediaId`),
+  ADD KEY `fk_authorId` (`fk_authorId`),
+  ADD KEY `fk_publisherId` (`fk_publisherId`);
 
 --
 -- Indizes für die Tabelle `publisher`
 --
 ALTER TABLE `publisher`
   ADD PRIMARY KEY (`publisherId`),
-  ADD KEY `fk_addressId` (`fk_addressId`);
+  ADD KEY `fk_addressId` (`fk_addressId`),
+  ADD KEY `fk_addressId_2` (`fk_addressId`);
 
 --
 -- Indizes für die Tabelle `users`
@@ -233,6 +239,29 @@ ALTER TABLE `publisher`
 --
 ALTER TABLE `users`
   MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints der exportierten Tabellen
+--
+
+--
+-- Constraints der Tabelle `author`
+--
+ALTER TABLE `author`
+  ADD CONSTRAINT `author_ibfk_1` FOREIGN KEY (`fk_address_id`) REFERENCES `address` (`addressId`);
+
+--
+-- Constraints der Tabelle `media`
+--
+ALTER TABLE `media`
+  ADD CONSTRAINT `media_ibfk_1` FOREIGN KEY (`fk_authorId`) REFERENCES `author` (`authorId`),
+  ADD CONSTRAINT `media_ibfk_2` FOREIGN KEY (`fk_publisherId`) REFERENCES `publisher` (`publisherId`);
+
+--
+-- Constraints der Tabelle `publisher`
+--
+ALTER TABLE `publisher`
+  ADD CONSTRAINT `publisher_ibfk_1` FOREIGN KEY (`fk_addressId`) REFERENCES `address` (`addressId`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
